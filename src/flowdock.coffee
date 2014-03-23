@@ -91,13 +91,14 @@ class Flowdock extends Adapter
       @receive new TextMessage(author, hubotMsg)
 
   run: ->
+    @login_token    = process.env.HUBOT_FLOWDOCK_API_TOKEN
     @login_email    = process.env.HUBOT_FLOWDOCK_LOGIN_EMAIL
     @login_password = process.env.HUBOT_FLOWDOCK_LOGIN_PASSWORD
-    unless @login_email && @login_password
-      console.error "ERROR: No credentials in environment variables HUBOT_FLOWDOCK_LOGIN_EMAIL and HUBOT_FLOWDOCK_LOGIN_PASSWORD"
+    unless @login_token || (@login_email && @login_password)
+      console.error "ERROR: No credentials in environment variable HUBOT_FLOWDOCK_API_TOKEN or HUBOT_FLOWDOCK_LOGIN_EMAIL and HUBOT_FLOWDOCK_LOGIN_PASSWORD"
       @emit "error", "No credentials"
 
-    @bot = new flowdock.Session(@login_email, @login_password)
+    @bot = if @login_token? then new flowdock.Session(@login_token) else new flowdock.Session(@login_email, @login_password)
     @bot.on "error", (e) =>
       if e == 401
         console.error "Could not authenticate, please check your credentials"

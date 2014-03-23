@@ -40,6 +40,8 @@ you will need to use `-a flowdock` when running your hubot.
 
 The Flowdock adapter requires only the following environment variables.
 
+    HUBOT_FLOWDOCK_API_TOKEN
+    or
     HUBOT_FLOWDOCK_LOGIN_EMAIL
     HUBOT_FLOWDOCK_LOGIN_PASSWORD
 
@@ -47,29 +49,17 @@ The Flowdock adapter requires only the following environment variables.
     # More info at https://github.com/github/hubot/pull/270.
     HEROKU_URL
 
-### Flowdock Login Email
-
-This is the email address of the account which your hubot will be using.
-
-### Flowdock Login Password
-
-This is the password of the account which your hubot will be using. Note: if you use third party authentication (e.g. Google), you need to [set a password for your account manually](https://www.flowdock.com/account/authorizations).
-
 ### Heroku Hostname
 
 Your Hubot instance's hostname in Heroku.
 
 ### Configuring the variables on Heroku
 
-    % heroku config:add HUBOT_FLOWDOCK_LOGIN_EMAIL="..."
-
-    % heroku config:add HUBOT_FLOWDOCK_LOGIN_PASSWORD="..."
+    % heroku config:add HUBOT_FLOWDOCK_API_TOKEN="..."
 
 ### Configuring the variables on UNIX
 
-    % export HUBOT_FLOWDOCK_LOGIN_EMAIL="..."
-
-    % export HUBOT_FLOWDOCK_LOGIN_PASSWORD="..."
+    % export HUBOT_FLOWDOCK_API_TOKEN="..."
 
 ## License
 
